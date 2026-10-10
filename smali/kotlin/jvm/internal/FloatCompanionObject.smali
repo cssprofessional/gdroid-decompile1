@@ -1,0 +1,32 @@
+###### Class kotlin.jvm.internal.FloatCompanionObject (kotlin.jvm.internal.FloatCompanionObject)
+.class public final Lkotlin/jvm/internal/FloatCompanionObject;
+.super Ljava/lang/Object;
+.source "PrimitiveCompanionObjects.kt"
+
+
+# static fields
+.field public static final INSTANCE:Lkotlin/jvm/internal/FloatCompanionObject;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 0
+    new-instance v0, Lkotlin/jvm/internal/FloatCompanionObject;
+
+    invoke-direct {v0}, Lkotlin/jvm/internal/FloatCompanionObject;-><init>()V
+
+    sput-object v0, Lkotlin/jvm/internal/FloatCompanionObject;->INSTANCE:Lkotlin/jvm/internal/FloatCompanionObject;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .registers 1
+
+    .line 32
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method

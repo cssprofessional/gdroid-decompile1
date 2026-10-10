@@ -1,0 +1,21 @@
+###### Class org.tukaani.xz.XZFormatException (org.tukaani.xz.XZFormatException)
+.class public Lorg/tukaani/xz/XZFormatException;
+.super Lorg/tukaani/xz/XZIOException;
+.source "XZFormatException.java"
+
+
+# static fields
+.field private static final serialVersionUID:J = 0x3L
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 17
+    const-string v0, "Input is not in the XZ format"
+
+    invoke-direct {p0, v0}, Lorg/tukaani/xz/XZIOException;-><init>(Ljava/lang/String;)V
+
+    return-void
+.end method

@@ -1,0 +1,11 @@
+###### Class org.bouncycastle.pqc.jcajce.interfaces.HQCKey (org.bouncycastle.pqc.jcajce.interfaces.HQCKey)
+.class public interface abstract Lorg/bouncycastle/pqc/jcajce/interfaces/HQCKey;
+.super Ljava/lang/Object;
+
+# interfaces
+.implements Ljava/security/Key;
+
+
+# virtual methods
+.method public abstract getParameterSpec()Lorg/bouncycastle/pqc/jcajce/spec/HQCParameterSpec;
+.end method

@@ -1,0 +1,134 @@
+###### Class kotlinx.coroutines.internal.NamedDispatcher (kotlinx.coroutines.internal.NamedDispatcher)
+.class public final Lkotlinx/coroutines/internal/NamedDispatcher;
+.super Lkotlinx/coroutines/CoroutineDispatcher;
+.source "NamedDispatcher.kt"
+
+# interfaces
+.implements Lkotlinx/coroutines/Delay;
+
+
+# instance fields
+.field public final synthetic $$delegate_0:Lkotlinx/coroutines/Delay;
+
+.field public final dispatcher:Lkotlinx/coroutines/CoroutineDispatcher;
+
+.field public final name:Ljava/lang/String;
+
+
+# direct methods
+.method public constructor <init>(Lkotlinx/coroutines/CoroutineDispatcher;Ljava/lang/String;)V
+    .registers 4
+
+    .line 13
+    invoke-direct {p0}, Lkotlinx/coroutines/CoroutineDispatcher;-><init>()V
+
+    instance-of v0, p1, Lkotlinx/coroutines/Delay;
+
+    if-eqz v0, :cond_b
+
+    move-object v0, p1
+
+    check-cast v0, Lkotlinx/coroutines/Delay;
+
+    goto :goto_c
+
+    :cond_b
+    const/4 v0, 0x0
+
+    :goto_c
+    if-nez v0, :cond_12
+
+    invoke-static {}, Lkotlinx/coroutines/DefaultExecutorKt;->getDefaultDelay()Lkotlinx/coroutines/Delay;
+
+    move-result-object v0
+
+    :cond_12
+    iput-object v0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->$$delegate_0:Lkotlinx/coroutines/Delay;
+
+    .line 11
+    iput-object p1, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->dispatcher:Lkotlinx/coroutines/CoroutineDispatcher;
+
+    .line 12
+    iput-object p2, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->name:Ljava/lang/String;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public dispatch(Lkotlin/coroutines/CoroutineContext;Ljava/lang/Runnable;)V
+    .registers 3
+
+    .line 17
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->dispatcher:Lkotlinx/coroutines/CoroutineDispatcher;
+
+    invoke-virtual {p0, p1, p2}, Lkotlinx/coroutines/CoroutineDispatcher;->dispatch(Lkotlin/coroutines/CoroutineContext;Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method public dispatchYield(Lkotlin/coroutines/CoroutineContext;Ljava/lang/Runnable;)V
+    .registers 3
+
+    .line 20
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->dispatcher:Lkotlinx/coroutines/CoroutineDispatcher;
+
+    invoke-virtual {p0, p1, p2}, Lkotlinx/coroutines/CoroutineDispatcher;->dispatchYield(Lkotlin/coroutines/CoroutineContext;Ljava/lang/Runnable;)V
+
+    return-void
+.end method
+
+.method public invokeOnTimeout(JLjava/lang/Runnable;Lkotlin/coroutines/CoroutineContext;)Lkotlinx/coroutines/DisposableHandle;
+    .registers 5
+
+    .line 0
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->$$delegate_0:Lkotlinx/coroutines/Delay;
+
+    invoke-interface {p0, p1, p2, p3, p4}, Lkotlinx/coroutines/Delay;->invokeOnTimeout(JLjava/lang/Runnable;Lkotlin/coroutines/CoroutineContext;)Lkotlinx/coroutines/DisposableHandle;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public isDispatchNeeded(Lkotlin/coroutines/CoroutineContext;)Z
+    .registers 2
+
+    .line 15
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->dispatcher:Lkotlinx/coroutines/CoroutineDispatcher;
+
+    invoke-virtual {p0, p1}, Lkotlinx/coroutines/CoroutineDispatcher;->isDispatchNeeded(Lkotlin/coroutines/CoroutineContext;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public scheduleResumeAfterDelay(JLkotlinx/coroutines/CancellableContinuation;)V
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(J",
+            "Lkotlinx/coroutines/CancellableContinuation<",
+            "-",
+            "Lkotlin/Unit;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 0
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->$$delegate_0:Lkotlinx/coroutines/Delay;
+
+    invoke-interface {p0, p1, p2, p3}, Lkotlinx/coroutines/Delay;->scheduleResumeAfterDelay(JLkotlinx/coroutines/CancellableContinuation;)V
+
+    return-void
+.end method
+
+.method public toString()Ljava/lang/String;
+    .registers 1
+
+    .line 23
+    iget-object p0, p0, Lkotlinx/coroutines/internal/NamedDispatcher;->name:Ljava/lang/String;
+
+    return-object p0
+.end method

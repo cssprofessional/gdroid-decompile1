@@ -1,0 +1,570 @@
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.BCEdDSAPrivateKey (org.bouncycastle.jcajce.provider.asymmetric.edec.BCEdDSAPrivateKey)
+.class public Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;
+.super Ljava/lang/Object;
+
+# interfaces
+.implements Lorg/bouncycastle/jcajce/interfaces/EdDSAPrivateKey;
+
+
+# static fields
+.field static final serialVersionUID:J = 0x1L
+
+
+# instance fields
+.field private final attributes:[B
+
+.field transient eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+.field transient eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+.field private final hasPublicKey:Z
+
+.field transient hashCode:I
+
+
+# direct methods
+.method public constructor <init>(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->hasPublicKey()Z
+
+    move-result v0
+
+    iput-boolean v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hasPublicKey:Z
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getAttributes()Lorg/bouncycastle/asn1/ASN1Set;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_18
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getAttributes()Lorg/bouncycastle/asn1/ASN1Set;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object v0
+
+    goto :goto_19
+
+    :cond_18
+    const/4 v0, 0x0
+
+    :goto_19
+    iput-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->attributes:[B
+
+    invoke-direct {p0, p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->populateFromPrivateKeyInfo(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+    .registers 3
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hasPublicKey:Z
+
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->attributes:[B
+
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    instance-of v0, p1, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;
+
+    if-eqz v0, :cond_18
+
+    check-cast p1, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;->generatePublicKey()Lorg/bouncycastle/crypto/params/Ed448PublicKeyParameters;
+
+    move-result-object p1
+
+    :goto_15
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    goto :goto_1f
+
+    :cond_18
+    check-cast p1, Lorg/bouncycastle/crypto/params/Ed25519PrivateKeyParameters;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/params/Ed25519PrivateKeyParameters;->generatePublicKey()Lorg/bouncycastle/crypto/params/Ed25519PublicKeyParameters;
+
+    move-result-object p1
+
+    goto :goto_15
+
+    :goto_1f
+    invoke-direct {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->calculateHashCode()I
+
+    move-result p1
+
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hashCode:I
+
+    return-void
+.end method
+
+.method private calculateHashCode()I
+    .registers 3
+
+    .line 0
+    iget-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    instance-of v1, v0, Lorg/bouncycastle/crypto/params/Ed448PublicKeyParameters;
+
+    if-eqz v1, :cond_d
+
+    check-cast v0, Lorg/bouncycastle/crypto/params/Ed448PublicKeyParameters;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/params/Ed448PublicKeyParameters;->getEncoded()[B
+
+    move-result-object v0
+
+    goto :goto_13
+
+    :cond_d
+    check-cast v0, Lorg/bouncycastle/crypto/params/Ed25519PublicKeyParameters;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/params/Ed25519PublicKeyParameters;->getEncoded()[B
+
+    move-result-object v0
+
+    :goto_13
+    invoke-virtual {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getAlgorithm()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Ljava/lang/String;->hashCode()I
+
+    move-result p0
+
+    mul-int/lit8 p0, p0, 0x1f
+
+    invoke-static {v0}, Lorg/bouncycastle/util/Arrays;->hashCode([B)I
+
+    move-result v0
+
+    add-int/2addr p0, v0
+
+    return p0
+.end method
+
+.method private getPrivateKeyInfo()Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+    .registers 4
+
+    .line 0
+    :try_start_0
+    iget-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->attributes:[B
+
+    invoke-static {v0}, Lorg/bouncycastle/asn1/ASN1Set;->getInstance(Ljava/lang/Object;)Lorg/bouncycastle/asn1/ASN1Set;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    invoke-static {v1, v0}, Lorg/bouncycastle/crypto/util/PrivateKeyInfoFactory;->createPrivateKeyInfo(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;Lorg/bouncycastle/asn1/ASN1Set;)Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object v1
+
+    iget-boolean p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hasPublicKey:Z
+
+    if-eqz p0, :cond_19
+
+    const-string p0, "org.bouncycastle.pkcs8.v1_info_only"
+
+    invoke-static {p0}, Lorg/bouncycastle/util/Properties;->isOverrideSet(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-nez p0, :cond_19
+
+    return-object v1
+
+    :cond_19
+    new-instance p0, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    invoke-virtual {v1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKeyAlgorithm()Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;
+
+    move-result-object v2
+
+    invoke-virtual {v1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->parsePrivateKey()Lorg/bouncycastle/asn1/ASN1Encodable;
+
+    move-result-object v1
+
+    invoke-direct {p0, v2, v1, v0}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;-><init>(Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;Lorg/bouncycastle/asn1/ASN1Encodable;Lorg/bouncycastle/asn1/ASN1Set;)V
+    :try_end_26
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_26} :catch_27
+
+    return-object p0
+
+    :catch_27
+    const/4 p0, 0x0
+
+    return-object p0
+.end method
+
+.method private populateFromPrivateKeyInfo(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+    .registers 4
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->parsePrivateKey()Lorg/bouncycastle/asn1/ASN1Encodable;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lorg/bouncycastle/asn1/ASN1OctetString;->getInstance(Ljava/lang/Object;)Lorg/bouncycastle/asn1/ASN1OctetString;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1OctetString;->getOctets()[B
+
+    move-result-object v0
+
+    sget-object v1, Lorg/bouncycastle/internal/asn1/edec/EdECObjectIdentifiers;->id_Ed448:Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKeyAlgorithm()Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;->getAlgorithm()Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    move-result-object p1
+
+    invoke-virtual {v1, p1}, Lorg/bouncycastle/asn1/ASN1Primitive;->equals(Lorg/bouncycastle/asn1/ASN1Primitive;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_2a
+
+    new-instance p1, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;
+
+    invoke-direct {p1, v0}, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;-><init>([B)V
+
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;->generatePublicKey()Lorg/bouncycastle/crypto/params/Ed448PublicKeyParameters;
+
+    move-result-object p1
+
+    :goto_27
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    goto :goto_36
+
+    :cond_2a
+    new-instance p1, Lorg/bouncycastle/crypto/params/Ed25519PrivateKeyParameters;
+
+    invoke-direct {p1, v0}, Lorg/bouncycastle/crypto/params/Ed25519PrivateKeyParameters;-><init>([B)V
+
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/params/Ed25519PrivateKeyParameters;->generatePublicKey()Lorg/bouncycastle/crypto/params/Ed25519PublicKeyParameters;
+
+    move-result-object p1
+
+    goto :goto_27
+
+    :goto_36
+    invoke-direct {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->calculateHashCode()I
+
+    move-result p1
+
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hashCode:I
+
+    return-void
+.end method
+
+.method private readObject(Ljava/io/ObjectInputStream;)V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;,
+            Ljava/lang/ClassNotFoundException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Ljava/io/ObjectInputStream;->defaultReadObject()V
+
+    invoke-virtual {p1}, Ljava/io/ObjectInputStream;->readObject()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, [B
+
+    invoke-static {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getInstance(Ljava/lang/Object;)Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->populateFromPrivateKeyInfo(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+
+    return-void
+.end method
+
+.method private writeObject(Ljava/io/ObjectOutputStream;)V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Ljava/io/ObjectOutputStream;->defaultWriteObject()V
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getEncoded()[B
+
+    move-result-object p0
+
+    invoke-virtual {p1, p0}, Ljava/io/ObjectOutputStream;->writeObject(Ljava/lang/Object;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public engineGetKeyParameters()Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    return-object p0
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
+    .registers 5
+
+    .line 0
+    if-ne p1, p0, :cond_4
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_4
+    instance-of v0, p1, Ljava/security/PrivateKey;
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_a
+
+    return v1
+
+    :cond_a
+    check-cast p1, Ljava/security/PrivateKey;
+
+    invoke-direct {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getPrivateKeyInfo()Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p0
+
+    instance-of v0, p1, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;
+
+    if-eqz v0, :cond_1b
+
+    check-cast p1, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;
+
+    invoke-direct {p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getPrivateKeyInfo()Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p1
+
+    goto :goto_23
+
+    :cond_1b
+    invoke-interface {p1}, Ljava/security/Key;->getEncoded()[B
+
+    move-result-object p1
+
+    invoke-static {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getInstance(Ljava/lang/Object;)Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p1
+
+    :goto_23
+    if-eqz p0, :cond_52
+
+    if-nez p1, :cond_28
+
+    goto :goto_52
+
+    :cond_28
+    :try_start_28
+    invoke-virtual {p0}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKeyAlgorithm()Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object v0
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKeyAlgorithm()Lorg/bouncycastle/asn1/x509/AlgorithmIdentifier;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object v2
+
+    invoke-static {v0, v2}, Lorg/bouncycastle/util/Arrays;->constantTimeAreEqual([B[B)Z
+
+    move-result v0
+
+    invoke-virtual {p0}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKey()Lorg/bouncycastle/asn1/ASN1OctetString;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object p0
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getPrivateKey()Lorg/bouncycastle/asn1/ASN1OctetString;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object p1
+
+    invoke-static {p0, p1}, Lorg/bouncycastle/util/Arrays;->constantTimeAreEqual([B[B)Z
+
+    move-result p0
+    :try_end_50
+    .catch Ljava/io/IOException; {:try_start_28 .. :try_end_50} :catch_52
+
+    and-int/2addr p0, v0
+
+    return p0
+
+    :catch_52
+    :cond_52
+    :goto_52
+    return v1
+.end method
+
+.method public getAlgorithm()Ljava/lang/String;
+    .registers 2
+
+    .line 0
+    const-string v0, "org.bouncycastle.emulate.oracle"
+
+    invoke-static {v0}, Lorg/bouncycastle/util/Properties;->isOverrideSet(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_b
+
+    const-string p0, "EdDSA"
+
+    return-object p0
+
+    :cond_b
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPrivateKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    instance-of p0, p0, Lorg/bouncycastle/crypto/params/Ed448PrivateKeyParameters;
+
+    if-eqz p0, :cond_14
+
+    const-string p0, "Ed448"
+
+    goto :goto_16
+
+    :cond_14
+    const-string p0, "Ed25519"
+
+    :goto_16
+    return-object p0
+.end method
+
+.method public getEncoded()[B
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x0
+
+    :try_start_1
+    invoke-direct {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getPrivateKeyInfo()Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p0
+
+    if-nez p0, :cond_8
+
+    return-object v0
+
+    :cond_8
+    invoke-virtual {p0}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object p0
+    :try_end_c
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_c} :catch_d
+
+    return-object p0
+
+    :catch_d
+    return-object v0
+.end method
+
+.method public getFormat()Ljava/lang/String;
+    .registers 1
+
+    .line 0
+    const-string p0, "PKCS#8"
+
+    return-object p0
+.end method
+
+.method public getPublicKey()Lorg/bouncycastle/jcajce/interfaces/EdDSAPublicKey;
+    .registers 2
+
+    .line 0
+    new-instance v0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPublicKey;
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    invoke-direct {v0, p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPublicKey;-><init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+
+    return-object v0
+.end method
+
+.method public hashCode()I
+    .registers 1
+
+    .line 0
+    iget p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->hashCode:I
+
+    return p0
+.end method
+
+.method public toString()Ljava/lang/String;
+    .registers 3
+
+    .line 0
+    invoke-virtual {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->getAlgorithm()Ljava/lang/String;
+
+    move-result-object v0
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;->eddsaPublicKey:Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    const-string v1, "Private Key"
+
+    invoke-static {v1, v0, p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/Utils;->keyToString(Ljava/lang/String;Ljava/lang/String;Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method

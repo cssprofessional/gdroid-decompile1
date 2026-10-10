@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="androidx_startup">androidx.startup</string>
+    <string name="app_name">GDroid</string>
+    <string name="launcher_discord_support">Discord support</string>
+    <string name="launcher_discord_support_description">Open the GDroid Discord community</string>
+    <string name="launcher_discord_support_unavailable">Open %1$s in a browser for GDroid support.</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="updates_automatic">Check for updates automatically</string>
+    <string name="updates_available">GDroid %1$s is available</string>
+    <string name="updates_back">Back to launcher</string>
+    <string name="updates_cancel_install">Cancel installation</string>
+    <string name="updates_check">Check now</string>
+    <string name="updates_checking">Checking GitHub…</string>
+    <string name="updates_confirm">Continue installation</string>
+    <string name="updates_confirmation">Confirm installation with Android</string>
+    <string name="updates_discard">Discard download</string>
+    <string name="updates_download">Download update</string>
+    <string name="updates_downloading">Downloading %1$s of %2$s</string>
+    <string name="updates_explanation">Check GitHub for stable releases when the launcher opens, at most once a day. Downloads and installation start when you choose them. Updates preserve your saves and settings.</string>
+    <string name="updates_idle">Get updates from tinsarfal/GDroid on GitHub.</string>
+    <string name="updates_install">Install update</string>
+    <string name="updates_install_busy">Finish or cancel the app update before starting a game.</string>
+    <string name="updates_installed">Installed: GDroid %1$s · build %2$s · %3$s</string>
+    <string name="updates_installing">Preparing installation…</string>
+    <string name="updates_no_browser">No browser is available. Releases are at github.com/tinsarfal/GDroid/releases.</string>
+    <string name="updates_pause">Pause download</string>
+    <string name="updates_paused">Download paused. You can resume it.</string>
+    <string name="updates_permission_help">Allow updates from GDroid in the system settings, then return here and select Install update again.</string>
+    <string name="updates_permission_unavailable">Your device did not open installation permissions. Enable installs from GDroid in system settings, or use the APK from GitHub releases.</string>
+    <string name="updates_ready">GDroid %1$s is ready to install</string>
+    <string name="updates_release_notes">Release %1$s · %2$s\n\n%3$s</string>
+    <string name="updates_releases">Open GitHub releases</string>
+    <string name="updates_resume">Resume download</string>
+    <string name="updates_start_failed">The device could not start the update transfer. Keep this panel open and try again.</string>
+    <string name="updates_title">Updates</string>
+    <string name="updates_verifying">Verifying download…</string>
+</resources>

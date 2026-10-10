@@ -1,0 +1,266 @@
+###### Class org.bouncycastle.pqc.jcajce.provider.bike.BCBIKEPrivateKey (org.bouncycastle.pqc.jcajce.provider.bike.BCBIKEPrivateKey)
+.class public Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;
+.super Ljava/lang/Object;
+
+# interfaces
+.implements Ljava/security/PrivateKey;
+.implements Lorg/bouncycastle/pqc/jcajce/interfaces/BIKEKey;
+
+
+# static fields
+.field private static final serialVersionUID:J = 0x1L
+
+
+# instance fields
+.field private transient attributes:Lorg/bouncycastle/asn1/ASN1Set;
+
+.field private transient params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+
+# direct methods
+.method public constructor <init>(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    invoke-direct {p0, p1}, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->init(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+
+    return-void
+.end method
+
+.method public constructor <init>(Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;)V
+    .registers 2
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    return-void
+.end method
+
+.method private init(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getAttributes()Lorg/bouncycastle/asn1/ASN1Set;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->attributes:Lorg/bouncycastle/asn1/ASN1Set;
+
+    invoke-static {p1}, Lorg/bouncycastle/pqc/crypto/util/PrivateKeyFactory;->createKey(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    move-result-object p1
+
+    check-cast p1, Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    iput-object p1, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    return-void
+.end method
+
+.method private readObject(Ljava/io/ObjectInputStream;)V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;,
+            Ljava/lang/ClassNotFoundException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Ljava/io/ObjectInputStream;->defaultReadObject()V
+
+    invoke-virtual {p1}, Ljava/io/ObjectInputStream;->readObject()Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, [B
+
+    invoke-static {p1}, Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;->getInstance(Ljava/lang/Object;)Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->init(Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;)V
+
+    return-void
+.end method
+
+.method private writeObject(Ljava/io/ObjectOutputStream;)V
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/io/IOException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p1}, Ljava/io/ObjectOutputStream;->defaultWriteObject()V
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->getEncoded()[B
+
+    move-result-object p0
+
+    invoke-virtual {p1, p0}, Ljava/io/ObjectOutputStream;->writeObject(Ljava/lang/Object;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public equals(Ljava/lang/Object;)Z
+    .registers 3
+
+    .line 0
+    if-ne p1, p0, :cond_4
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_4
+    instance-of v0, p1, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;
+
+    if-eqz v0, :cond_1b
+
+    check-cast p1, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;
+
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;->getEncoded()[B
+
+    move-result-object p0
+
+    iget-object p1, p1, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;->getEncoded()[B
+
+    move-result-object p1
+
+    invoke-static {p0, p1}, Lorg/bouncycastle/util/Arrays;->areEqual([B[B)Z
+
+    move-result p0
+
+    return p0
+
+    :cond_1b
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public final getAlgorithm()Ljava/lang/String;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEKeyParameters;->getParameters()Lorg/bouncycastle/pqc/crypto/bike/BIKEParameters;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEParameters;->getName()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-static {p0}, Lorg/bouncycastle/util/Strings;->toUpperCase(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public getEncoded()[B
+    .registers 2
+
+    .line 0
+    :try_start_0
+    iget-object v0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->attributes:Lorg/bouncycastle/asn1/ASN1Set;
+
+    invoke-static {v0, p0}, Lorg/bouncycastle/pqc/crypto/util/PrivateKeyInfoFactory;->createPrivateKeyInfo(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;Lorg/bouncycastle/asn1/ASN1Set;)Lorg/bouncycastle/asn1/pkcs/PrivateKeyInfo;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lorg/bouncycastle/asn1/ASN1Object;->getEncoded()[B
+
+    move-result-object p0
+    :try_end_c
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_c} :catch_d
+
+    return-object p0
+
+    :catch_d
+    const/4 p0, 0x0
+
+    return-object p0
+.end method
+
+.method public getFormat()Ljava/lang/String;
+    .registers 1
+
+    .line 0
+    const-string p0, "PKCS#8"
+
+    return-object p0
+.end method
+
+.method public getKeyParams()Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    return-object p0
+.end method
+
+.method public getParameterSpec()Lorg/bouncycastle/pqc/jcajce/spec/BIKEParameterSpec;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEKeyParameters;->getParameters()Lorg/bouncycastle/pqc/crypto/bike/BIKEParameters;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEParameters;->getName()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-static {p0}, Lorg/bouncycastle/pqc/jcajce/spec/BIKEParameterSpec;->fromName(Ljava/lang/String;)Lorg/bouncycastle/pqc/jcajce/spec/BIKEParameterSpec;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public hashCode()I
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/jcajce/provider/bike/BCBIKEPrivateKey;->params:Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/pqc/crypto/bike/BIKEPrivateKeyParameters;->getEncoded()[B
+
+    move-result-object p0
+
+    invoke-static {p0}, Lorg/bouncycastle/util/Arrays;->hashCode([B)I
+
+    move-result p0
+
+    return p0
+.end method

@@ -1,0 +1,98 @@
+###### Class in.dragonbra.javasteam.rpc.service.InventoryClient (in.dragonbra.javasteam.rpc.service.InventoryClient)
+.class public final Lin/dragonbra/javasteam/rpc/service/InventoryClient;
+.super Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/UnifiedService;
+.source "InventoryClient.kt"
+
+
+# direct methods
+.method public constructor <init>(Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/SteamUnifiedMessages;)V
+    .registers 3
+
+    const-string v0, "unifiedMessages"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 23
+    invoke-direct {p0, p1}, Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/UnifiedService;-><init>(Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/SteamUnifiedMessages;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public getServiceName()Ljava/lang/String;
+    .registers 1
+
+    .line 21
+    const-string p0, "InventoryClient"
+
+    return-object p0
+.end method
+
+.method public handleNotificationMsg(Ljava/lang/String;Lin/dragonbra/javasteam/base/PacketClientMsgProtobuf;)V
+    .registers 4
+
+    const-string v0, "methodName"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "packetMsg"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 30
+    const-string v0, "NotifyNewItems"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result p1
+
+    if-eqz p1, :cond_17
+
+    .line 31
+    const-class p1, Lin/dragonbra/javasteam/protobufs/steamclient/SteammessagesInventorySteamclient$CInventoryClient_NewItems_Notification;
+
+    .line 30
+    invoke-virtual {p0, p1, p2}, Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/UnifiedService;->postNotificationMsg(Ljava/lang/Class;Lin/dragonbra/javasteam/base/PacketClientMsgProtobuf;)V
+
+    :cond_17
+    return-void
+.end method
+
+.method public handleResponseMsg(Ljava/lang/String;Lin/dragonbra/javasteam/base/PacketClientMsgProtobuf;)V
+    .registers 3
+
+    .line 0
+    const-string p0, "methodName"
+
+    invoke-static {p1, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string p0, "packetMsg"
+
+    invoke-static {p2, p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    return-void
+.end method
+
+.method public final notifyNewItems(Lin/dragonbra/javasteam/protobufs/steamclient/SteammessagesInventorySteamclient$CInventoryClient_NewItems_Notification;)V
+    .registers 3
+
+    const-string v0, "request"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 43
+    invoke-virtual {p0}, Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/UnifiedService;->getUnifiedMessages()Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/SteamUnifiedMessages;
+
+    move-result-object p0
+
+    invoke-static {p0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNull(Ljava/lang/Object;)V
+
+    .line 44
+    const-string v0, "InventoryClient.NotifyNewItems#1"
+
+    .line 43
+    invoke-virtual {p0, v0, p1}, Lin/dragonbra/javasteam/steam/handlers/steamunifiedmessages/SteamUnifiedMessages;->sendNotification(Ljava/lang/String;Lcom/google/protobuf/GeneratedMessage;)V
+
+    return-void
+.end method

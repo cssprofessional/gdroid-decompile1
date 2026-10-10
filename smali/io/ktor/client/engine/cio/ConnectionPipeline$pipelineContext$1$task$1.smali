@@ -1,0 +1,204 @@
+###### Class io.ktor.client.engine.cio.ConnectionPipeline$pipelineContext$1$task$1 (io.ktor.client.engine.cio.ConnectionPipeline$pipelineContext$1$task$1)
+.class public final Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;
+.super Lkotlin/coroutines/jvm/internal/SuspendLambda;
+.source "ConnectionPipeline.kt"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function2;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = null
+.end annotation
+
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Lkotlin/coroutines/jvm/internal/SuspendLambda;",
+        "Lkotlin/jvm/functions/Function2<",
+        "Lkotlinx/coroutines/CoroutineScope;",
+        "Lkotlin/coroutines/Continuation<",
+        "-",
+        "Lio/ktor/client/engine/cio/RequestTask;",
+        ">;",
+        "Ljava/lang/Object;",
+        ">;"
+    }
+.end annotation
+
+.annotation runtime Lkotlin/coroutines/jvm/internal/DebugMetadata;
+    c = "io.ktor.client.engine.cio.ConnectionPipeline$pipelineContext$1$task$1"
+    f = "ConnectionPipeline.kt"
+    l = {
+        0x2d
+    }
+    m = "invokeSuspend"
+    v = 0x1
+.end annotation
+
+
+# instance fields
+.field public final synthetic $tasks:Lkotlinx/coroutines/channels/Channel;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Lkotlinx/coroutines/channels/Channel<",
+            "Lio/ktor/client/engine/cio/RequestTask;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field public label:I
+
+
+# direct methods
+.method public constructor <init>(Lkotlinx/coroutines/channels/Channel;Lkotlin/coroutines/Continuation;)V
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lkotlinx/coroutines/channels/Channel<",
+            "Lio/ktor/client/engine/cio/RequestTask;",
+            ">;",
+            "Lkotlin/coroutines/Continuation<",
+            "-",
+            "Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 0
+    iput-object p1, p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->$tasks:Lkotlinx/coroutines/channels/Channel;
+
+    const/4 p1, 0x2
+
+    invoke-direct {p0, p1, p2}, Lkotlin/coroutines/jvm/internal/SuspendLambda;-><init>(ILkotlin/coroutines/Continuation;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final create(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/Object;",
+            "Lkotlin/coroutines/Continuation<",
+            "*>;)",
+            "Lkotlin/coroutines/Continuation<",
+            "Lkotlin/Unit;",
+            ">;"
+        }
+    .end annotation
+
+    .line 0
+    new-instance p1, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;
+
+    iget-object p0, p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->$tasks:Lkotlinx/coroutines/channels/Channel;
+
+    invoke-direct {p1, p0, p2}, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;-><init>(Lkotlinx/coroutines/channels/Channel;Lkotlin/coroutines/Continuation;)V
+
+    return-object p1
+.end method
+
+.method public bridge synthetic invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 3
+
+    .line 0
+    check-cast p1, Lkotlinx/coroutines/CoroutineScope;
+
+    check-cast p2, Lkotlin/coroutines/Continuation;
+
+    invoke-virtual {p0, p1, p2}, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->invoke(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final invoke(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lkotlinx/coroutines/CoroutineScope;",
+            "Lkotlin/coroutines/Continuation<",
+            "-",
+            "Lio/ktor/client/engine/cio/RequestTask;",
+            ">;)",
+            "Ljava/lang/Object;"
+        }
+    .end annotation
+
+    .line 0
+    invoke-virtual {p0, p1, p2}, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->create(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
+
+    move-result-object p0
+
+    check-cast p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;
+
+    sget-object p1, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;
+
+    invoke-virtual {p0, p1}, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public final invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 5
+
+    invoke-static {}, Lkotlin/coroutines/intrinsics/IntrinsicsKt__IntrinsicsKt;->getCOROUTINE_SUSPENDED()Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 44
+    iget v1, p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->label:I
+
+    const/4 v2, 0x1
+
+    if-eqz v1, :cond_17
+
+    if-ne v1, v2, :cond_f
+
+    invoke-static {p1}, Lkotlin/ResultKt;->throwOnFailure(Ljava/lang/Object;)V
+
+    goto :goto_25
+
+    :cond_f
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    const-string p1, "call to \'resume\' before \'invoke\' with coroutine"
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_17
+    invoke-static {p1}, Lkotlin/ResultKt;->throwOnFailure(Ljava/lang/Object;)V
+
+    .line 45
+    iget-object p1, p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->$tasks:Lkotlinx/coroutines/channels/Channel;
+
+    iput v2, p0, Lio/ktor/client/engine/cio/ConnectionPipeline$pipelineContext$1$task$1;->label:I
+
+    invoke-interface {p1, p0}, Lkotlinx/coroutines/channels/ReceiveChannel;->receive(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    if-ne p1, v0, :cond_25
+
+    return-object v0
+
+    :cond_25
+    :goto_25
+    return-object p1
+.end method

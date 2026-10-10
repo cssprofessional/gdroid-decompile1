@@ -1,0 +1,16 @@
+###### Class org.bouncycastle.crypto.generators.KDF1BytesGenerator (org.bouncycastle.crypto.generators.KDF1BytesGenerator)
+.class public Lorg/bouncycastle/crypto/generators/KDF1BytesGenerator;
+.super Lorg/bouncycastle/crypto/generators/BaseKDFBytesGenerator;
+
+
+# direct methods
+.method public constructor <init>(Lorg/bouncycastle/crypto/Digest;)V
+    .registers 3
+
+    .line 0
+    const/4 v0, 0x0
+
+    invoke-direct {p0, v0, p1}, Lorg/bouncycastle/crypto/generators/BaseKDFBytesGenerator;-><init>(ILorg/bouncycastle/crypto/Digest;)V
+
+    return-void
+.end method

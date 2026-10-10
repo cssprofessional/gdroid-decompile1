@@ -1,0 +1,198 @@
+###### Class org.tukaani.xz.simple.ARM64 (org.tukaani.xz.simple.ARM64)
+.class public final Lorg/tukaani/xz/simple/ARM64;
+.super Ljava/lang/Object;
+.source "ARM64.java"
+
+# interfaces
+.implements Lorg/tukaani/xz/simple/SimpleFilter;
+
+
+# instance fields
+.field private final isEncoder:Z
+
+.field private pos:I
+
+
+# direct methods
+.method public constructor <init>(ZI)V
+    .registers 3
+
+    .line 15
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 16
+    iput-boolean p1, p0, Lorg/tukaani/xz/simple/ARM64;->isEncoder:Z
+
+    .line 17
+    iput p2, p0, Lorg/tukaani/xz/simple/ARM64;->pos:I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public code([BII)I
+    .registers 10
+
+    add-int/2addr p3, p2
+
+    add-int/lit8 p3, p3, -0x4
+
+    move v0, p2
+
+    :goto_4
+    if-gt v0, p3, :cond_72
+
+    add-int/lit8 v1, v0, 0x3
+
+    .line 28
+    aget-byte v1, p1, v1
+
+    and-int/lit16 v2, v1, 0xfc
+
+    const/16 v3, 0x94
+
+    if-ne v2, v3, :cond_2b
+
+    .line 41
+    invoke-static {p1, v0}, Lorg/tukaani/xz/common/ByteArrayView;->getIntLE([BI)I
+
+    move-result v1
+
+    .line 43
+    iget v2, p0, Lorg/tukaani/xz/simple/ARM64;->pos:I
+
+    add-int/2addr v2, v0
+
+    sub-int/2addr v2, p2
+
+    ushr-int/lit8 v2, v2, 0x2
+
+    .line 44
+    iget-boolean v3, p0, Lorg/tukaani/xz/simple/ARM64;->isEncoder:Z
+
+    if-nez v3, :cond_1f
+
+    neg-int v2, v2
+
+    :cond_1f
+    add-int/2addr v1, v2
+
+    const v2, 0x3ffffff
+
+    and-int/2addr v1, v2
+
+    const/high16 v2, -0x6c000000
+
+    or-int/2addr v1, v2
+
+    .line 48
+    invoke-static {p1, v0, v1}, Lorg/tukaani/xz/common/ByteArrayView;->setIntLE([BII)V
+
+    goto :goto_6f
+
+    :cond_2b
+    and-int/lit16 v1, v1, 0x9f
+
+    const/16 v2, 0x90
+
+    if-ne v1, v2, :cond_6f
+
+    .line 62
+    invoke-static {p1, v0}, Lorg/tukaani/xz/common/ByteArrayView;->getIntLE([BI)I
+
+    move-result v1
+
+    ushr-int/lit8 v2, v1, 0x1d
+
+    and-int/lit8 v2, v2, 0x3
+
+    ushr-int/lit8 v3, v1, 0x3
+
+    const v4, 0x1ffffc
+
+    and-int/2addr v3, v4
+
+    or-int/2addr v2, v3
+
+    const/high16 v3, 0x20000
+
+    add-int v4, v2, v3
+
+    const/high16 v5, 0x1c0000
+
+    and-int/2addr v4, v5
+
+    if-eqz v4, :cond_4a
+
+    goto :goto_6f
+
+    .line 75
+    :cond_4a
+    iget v4, p0, Lorg/tukaani/xz/simple/ARM64;->pos:I
+
+    add-int/2addr v4, v0
+
+    sub-int/2addr v4, p2
+
+    ushr-int/lit8 v4, v4, 0xc
+
+    .line 76
+    iget-boolean v5, p0, Lorg/tukaani/xz/simple/ARM64;->isEncoder:Z
+
+    if-nez v5, :cond_55
+
+    neg-int v4, v4
+
+    :cond_55
+    add-int/2addr v2, v4
+
+    const v4, -0x6fffffe1
+
+    and-int/2addr v1, v4
+
+    and-int/lit8 v4, v2, 0x3
+
+    shl-int/lit8 v4, v4, 0x1d
+
+    or-int/2addr v1, v4
+
+    const v4, 0x3fffc
+
+    and-int/2addr v4, v2
+
+    shl-int/lit8 v4, v4, 0x3
+
+    or-int/2addr v1, v4
+
+    and-int/2addr v2, v3
+
+    neg-int v2, v2
+
+    const/high16 v3, 0xe00000
+
+    and-int/2addr v2, v3
+
+    or-int/2addr v1, v2
+
+    .line 85
+    invoke-static {p1, v0, v1}, Lorg/tukaani/xz/common/ByteArrayView;->setIntLE([BII)V
+
+    :cond_6f
+    :goto_6f
+    add-int/lit8 v0, v0, 0x4
+
+    goto :goto_4
+
+    :cond_72
+    sub-int/2addr v0, p2
+
+    .line 90
+    iget p1, p0, Lorg/tukaani/xz/simple/ARM64;->pos:I
+
+    add-int/2addr p1, v0
+
+    iput p1, p0, Lorg/tukaani/xz/simple/ARM64;->pos:I
+
+    return v0
+.end method

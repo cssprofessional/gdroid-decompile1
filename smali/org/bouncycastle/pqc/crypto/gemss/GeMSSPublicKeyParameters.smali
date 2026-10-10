@@ -1,0 +1,54 @@
+###### Class org.bouncycastle.pqc.crypto.gemss.GeMSSPublicKeyParameters (org.bouncycastle.pqc.crypto.gemss.GeMSSPublicKeyParameters)
+.class public Lorg/bouncycastle/pqc/crypto/gemss/GeMSSPublicKeyParameters;
+.super Lorg/bouncycastle/pqc/crypto/gemss/GeMSSKeyParameters;
+
+
+# instance fields
+.field private final pk:[B
+
+
+# direct methods
+.method public constructor <init>(Lorg/bouncycastle/pqc/crypto/gemss/GeMSSParameters;[B)V
+    .registers 4
+
+    .line 0
+    const/4 v0, 0x0
+
+    invoke-direct {p0, v0, p1}, Lorg/bouncycastle/pqc/crypto/gemss/GeMSSKeyParameters;-><init>(ZLorg/bouncycastle/pqc/crypto/gemss/GeMSSParameters;)V
+
+    array-length p1, p2
+
+    new-array p1, p1, [B
+
+    iput-object p1, p0, Lorg/bouncycastle/pqc/crypto/gemss/GeMSSPublicKeyParameters;->pk:[B
+
+    array-length p0, p1
+
+    invoke-static {p2, v0, p1, v0, p0}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public getEncoded()[B
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/crypto/gemss/GeMSSPublicKeyParameters;->pk:[B
+
+    invoke-static {p0}, Lorg/bouncycastle/util/Arrays;->clone([B)[B
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public getPK()[B
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/pqc/crypto/gemss/GeMSSPublicKeyParameters;->pk:[B
+
+    return-object p0
+.end method

@@ -1,0 +1,162 @@
+###### Class org.bouncycastle.crypto.generators.DESedeKeyGenerator (org.bouncycastle.crypto.generators.DESedeKeyGenerator)
+.class public Lorg/bouncycastle/crypto/generators/DESedeKeyGenerator;
+.super Lorg/bouncycastle/crypto/generators/DESKeyGenerator;
+
+
+# static fields
+.field private static final MAX_IT:I = 0x14
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 1
+
+    .line 0
+    invoke-direct {p0}, Lorg/bouncycastle/crypto/generators/DESKeyGenerator;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public generateKey()[B
+    .registers 6
+
+    .line 0
+    iget v0, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->strength:I
+
+    new-array v1, v0, [B
+
+    const/4 v2, 0x0
+
+    move v3, v2
+
+    :cond_6
+    iget-object v4, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->random:Ljava/security/SecureRandom;
+
+    invoke-virtual {v4, v1}, Ljava/security/SecureRandom;->nextBytes([B)V
+
+    invoke-static {v1}, Lorg/bouncycastle/crypto/params/DESParameters;->setOddParity([B)V
+
+    add-int/lit8 v3, v3, 0x1
+
+    const/16 v4, 0x14
+
+    if-ge v3, v4, :cond_20
+
+    invoke-static {v1, v2, v0}, Lorg/bouncycastle/crypto/params/DESedeParameters;->isWeakKey([BII)Z
+
+    move-result v4
+
+    if-nez v4, :cond_6
+
+    invoke-static {v1, v2}, Lorg/bouncycastle/crypto/params/DESedeParameters;->isRealEDEKey([BI)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_6
+
+    :cond_20
+    invoke-static {v1, v2, v0}, Lorg/bouncycastle/crypto/params/DESedeParameters;->isWeakKey([BII)Z
+
+    move-result p0
+
+    if-nez p0, :cond_2d
+
+    invoke-static {v1, v2}, Lorg/bouncycastle/crypto/params/DESedeParameters;->isRealEDEKey([BI)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_2d
+
+    return-object v1
+
+    :cond_2d
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    const-string v0, "Unable to generate DES-EDE key"
+
+    invoke-direct {p0, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public init(Lorg/bouncycastle/crypto/KeyGenerationParameters;)V
+    .registers 5
+
+    .line 0
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/KeyGenerationParameters;->getRandom()Ljava/security/SecureRandom;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->random:Ljava/security/SecureRandom;
+
+    invoke-virtual {p1}, Lorg/bouncycastle/crypto/KeyGenerationParameters;->getStrength()I
+
+    move-result p1
+
+    add-int/lit8 p1, p1, 0x7
+
+    div-int/lit8 p1, p1, 0x8
+
+    iput p1, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->strength:I
+
+    const/16 v0, 0x18
+
+    if-eqz p1, :cond_2f
+
+    const/16 v1, 0x15
+
+    if-ne p1, v1, :cond_19
+
+    goto :goto_2f
+
+    :cond_19
+    const/16 v1, 0xe
+
+    const/16 v2, 0x10
+
+    if-ne p1, v1, :cond_22
+
+    iput v2, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->strength:I
+
+    goto :goto_31
+
+    :cond_22
+    if-eq p1, v0, :cond_31
+
+    if-ne p1, v2, :cond_27
+
+    goto :goto_31
+
+    :cond_27
+    new-instance p0, Ljava/lang/IllegalArgumentException;
+
+    const-string p1, "DESede key must be 192 or 128 bits long."
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_2f
+    :goto_2f
+    iput v0, p0, Lorg/bouncycastle/crypto/CipherKeyGenerator;->strength:I
+
+    :cond_31
+    :goto_31
+    new-instance p0, Lorg/bouncycastle/crypto/constraints/DefaultServiceProperties;
+
+    const/4 p1, 0x0
+
+    sget-object v0, Lorg/bouncycastle/crypto/CryptoServicePurpose;->KEYGEN:Lorg/bouncycastle/crypto/CryptoServicePurpose;
+
+    const-string v1, "DESedeKeyGen"
+
+    const/16 v2, 0x70
+
+    invoke-direct {p0, v1, v2, p1, v0}, Lorg/bouncycastle/crypto/constraints/DefaultServiceProperties;-><init>(Ljava/lang/String;ILjava/lang/Object;Lorg/bouncycastle/crypto/CryptoServicePurpose;)V
+
+    invoke-static {p0}, Lorg/bouncycastle/crypto/CryptoServicesRegistrar;->checkConstraints(Lorg/bouncycastle/crypto/CryptoServiceProperties;)V
+
+    return-void
+.end method

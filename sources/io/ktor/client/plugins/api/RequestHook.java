@@ -1,0 +1,101 @@
+package io.ktor.client.plugins.api;
+
+import in.dragonbra.javasteam.protobufs.steamclient.SteammessagesPublishedfileSteamclient;
+import io.ktor.client.HttpClient;
+import io.ktor.client.request.HttpRequestBuilder;
+import io.ktor.client.request.HttpRequestPipeline;
+import io.ktor.util.pipeline.PipelineContext;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+import kotlin.coroutines.jvm.internal.SuspendLambda;
+import kotlin.jvm.functions.Function3;
+import kotlin.jvm.functions.Function4;
+import kotlin.jvm.internal.Intrinsics;
+
+/* JADX INFO: compiled from: KtorCallContexts.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class RequestHook implements ClientHook<Function4<? super OnRequestContext, ? super HttpRequestBuilder, ? super Object, ? super Continuation<? super Unit>, ? extends Object>> {
+    public static final RequestHook INSTANCE = new RequestHook();
+
+    @Override // io.ktor.client.plugins.api.ClientHook
+    public /* bridge */ /* synthetic */ void install(HttpClient httpClient, Function4<? super OnRequestContext, ? super HttpRequestBuilder, ? super Object, ? super Continuation<? super Unit>, ? extends Object> function4) {
+        install2(httpClient, (Function4<? super OnRequestContext, ? super HttpRequestBuilder, Object, ? super Continuation<? super Unit>, ? extends Object>) function4);
+    }
+
+    /* JADX INFO: renamed from: io.ktor.client.plugins.api.RequestHook$install$1, reason: invalid class name */
+    /* JADX INFO: compiled from: KtorCallContexts.kt */
+    @DebugMetadata(c = "io.ktor.client.plugins.api.RequestHook$install$1", f = "KtorCallContexts.kt", l = {SteammessagesPublishedfileSteamclient.PublishedFileDetails.CHILDREN_FIELD_NUMBER}, m = "invokeSuspend", v = 1)
+    public static final class AnonymousClass1 extends SuspendLambda implements Function3<PipelineContext<Object, HttpRequestBuilder>, Object, Continuation<? super Unit>, Object> {
+        public final /* synthetic */ Function4<OnRequestContext, HttpRequestBuilder, Object, Continuation<? super Unit>, Object> $handler;
+        public /* synthetic */ Object L$0;
+        public int label;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        /* JADX WARN: Multi-variable type inference failed */
+        public AnonymousClass1(Function4<? super OnRequestContext, ? super HttpRequestBuilder, Object, ? super Continuation<? super Unit>, ? extends Object> function4, Continuation<? super AnonymousClass1> continuation) {
+            super(3, continuation);
+            this.$handler = function4;
+        }
+
+        @Override // kotlin.jvm.functions.Function3
+        public final Object invoke(PipelineContext<Object, HttpRequestBuilder> pipelineContext, Object obj, Continuation<? super Unit> continuation) {
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this.$handler, continuation);
+            anonymousClass1.L$0 = pipelineContext;
+            return anonymousClass1.invokeSuspend(Unit.INSTANCE);
+        }
+
+        /*  JADX ERROR: JadxRuntimeException in pass: ModVisitor
+            jadx.core.utils.exceptions.JadxRuntimeException: Can't change immutable type java.lang.Object to io.ktor.client.plugins.api.RequestHook$install$1 for r6v4 'this'  java.lang.Object
+            	at jadx.core.dex.instructions.args.SSAVar.setType(SSAVar.java:114)
+            	at jadx.core.dex.instructions.args.RegisterArg.setType(RegisterArg.java:52)
+            	at jadx.core.dex.visitors.ModVisitor.removeCheckCast(ModVisitor.java:417)
+            	at jadx.core.dex.visitors.ModVisitor.replaceStep(ModVisitor.java:152)
+            	at jadx.core.dex.visitors.ModVisitor.visit(ModVisitor.java:96)
+            */
+        @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+        public final java.lang.Object invokeSuspend(java.lang.Object r7) {
+            /*
+                r6 = this;
+                java.lang.Object r0 = r6.L$0
+                io.ktor.util.pipeline.PipelineContext r0 = (io.ktor.util.pipeline.PipelineContext) r0
+                java.lang.Object r1 = kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED()
+                int r2 = r6.label
+                r3 = 1
+                if (r2 == 0) goto L1b
+                if (r2 != r3) goto L13
+                kotlin.ResultKt.throwOnFailure(r7)
+                goto L3c
+            L13:
+                java.lang.IllegalStateException r6 = new java.lang.IllegalStateException
+                java.lang.String r7 = "call to 'resume' before 'invoke' with coroutine"
+                r6.<init>(r7)
+                throw r6
+            L1b:
+                kotlin.ResultKt.throwOnFailure(r7)
+                kotlin.jvm.functions.Function4<io.ktor.client.plugins.api.OnRequestContext, io.ktor.client.request.HttpRequestBuilder, java.lang.Object, kotlin.coroutines.Continuation<? super kotlin.Unit>, java.lang.Object> r7 = r6.$handler
+                io.ktor.client.plugins.api.OnRequestContext r2 = new io.ktor.client.plugins.api.OnRequestContext
+                r2.<init>()
+                java.lang.Object r4 = r0.getContext()
+                java.lang.Object r5 = r0.getSubject()
+                java.lang.Object r0 = kotlin.coroutines.jvm.internal.SpillingKt.nullOutSpilledVariable(r0)
+                r6.L$0 = r0
+                r6.label = r3
+                java.lang.Object r6 = r7.invoke(r2, r4, r5, r6)
+                if (r6 != r1) goto L3c
+                return r1
+            L3c:
+                kotlin.Unit r6 = kotlin.Unit.INSTANCE
+                return r6
+            */
+            throw new UnsupportedOperationException("Method not decompiled: io.ktor.client.plugins.api.RequestHook.AnonymousClass1.invokeSuspend(java.lang.Object):java.lang.Object");
+        }
+    }
+
+    /* JADX INFO: renamed from: install, reason: avoid collision after fix types in other method */
+    public void install2(HttpClient client, Function4<? super OnRequestContext, ? super HttpRequestBuilder, Object, ? super Continuation<? super Unit>, ? extends Object> handler) {
+        Intrinsics.checkNotNullParameter(client, "client");
+        Intrinsics.checkNotNullParameter(handler, "handler");
+        client.getRequestPipeline().intercept(HttpRequestPipeline.Phases.getState(), new AnonymousClass1(handler, null));
+    }
+}

@@ -1,0 +1,876 @@
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi)
+.class public Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.super Ljava/security/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed25519;,
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed448;,
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$EdDSA;,
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X25519;,
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X448;,
+        Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$XDH;
+    }
+.end annotation
+
+
+# static fields
+.field private static final Ed25519:I = 0x1
+
+.field private static final Ed448:I = 0x2
+
+.field private static final EdDSA:I = -0x1
+
+.field private static final X25519:I = 0x3
+
+.field private static final X448:I = 0x4
+
+.field private static final XDH:I = -0x2
+
+
+# instance fields
+.field private final algorithmDeclared:I
+
+.field private algorithmInitialized:I
+
+.field private generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+.field private secureRandom:Ljava/security/SecureRandom;
+
+
+# direct methods
+.method public constructor <init>(I)V
+    .registers 3
+
+    .line 0
+    invoke-direct {p0}, Ljava/security/KeyPairGeneratorSpi;-><init>()V
+
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmDeclared:I
+
+    invoke-static {p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->getAlgorithmFamily(I)I
+
+    move-result v0
+
+    if-eq v0, p1, :cond_d
+
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    :cond_d
+    return-void
+.end method
+
+.method private static getAlgorithmFamily(I)I
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x1
+
+    if-eq p0, v0, :cond_f
+
+    const/4 v0, 0x2
+
+    if-eq p0, v0, :cond_f
+
+    const/4 v0, 0x3
+
+    if-eq p0, v0, :cond_d
+
+    const/4 v0, 0x4
+
+    if-eq p0, v0, :cond_d
+
+    return p0
+
+    :cond_d
+    const/4 p0, -0x2
+
+    return p0
+
+    :cond_f
+    const/4 p0, -0x1
+
+    return p0
+.end method
+
+.method private static getAlgorithmForName(Ljava/lang/String;)I
+    .registers 4
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/InvalidAlgorithmParameterException;
+        }
+    .end annotation
+
+    .line 0
+    const-string v0, "X25519"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_71
+
+    sget-object v0, Lorg/bouncycastle/internal/asn1/edec/EdECObjectIdentifiers;->id_X25519:Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;->getId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_15
+
+    goto :goto_71
+
+    :cond_15
+    const-string v0, "Ed25519"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_6f
+
+    sget-object v0, Lorg/bouncycastle/internal/asn1/edec/EdECObjectIdentifiers;->id_Ed25519:Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;->getId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2a
+
+    goto :goto_6f
+
+    :cond_2a
+    const-string v0, "X448"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_6d
+
+    sget-object v0, Lorg/bouncycastle/internal/asn1/edec/EdECObjectIdentifiers;->id_X448:Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;->getId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3f
+
+    goto :goto_6d
+
+    :cond_3f
+    const-string v0, "Ed448"
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_6b
+
+    sget-object v0, Lorg/bouncycastle/internal/asn1/edec/EdECObjectIdentifiers;->id_Ed448:Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/asn1/ASN1ObjectIdentifier;->getId()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_54
+
+    goto :goto_6b
+
+    :cond_54
+    new-instance v0, Ljava/security/InvalidAlgorithmParameterException;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "invalid parameterSpec name: "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-direct {v0, p0}, Ljava/security/InvalidAlgorithmParameterException;-><init>(Ljava/lang/String;)V
+
+    throw v0
+
+    :cond_6b
+    :goto_6b
+    const/4 p0, 0x2
+
+    return p0
+
+    :cond_6d
+    :goto_6d
+    const/4 p0, 0x4
+
+    return p0
+
+    :cond_6f
+    :goto_6f
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_71
+    :goto_71
+    const/4 p0, 0x3
+
+    return p0
+.end method
+
+.method private getAlgorithmForStrength(I)I
+    .registers 6
+
+    .line 0
+    const/16 v0, 0xff
+
+    const-string v1, "key size not configurable"
+
+    const/4 v2, -0x1
+
+    const/4 v3, -0x2
+
+    if-eq p1, v0, :cond_2d
+
+    const/16 v0, 0x100
+
+    if-eq p1, v0, :cond_2d
+
+    const/16 v0, 0x1c0
+
+    if-ne p1, v0, :cond_25
+
+    iget p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmDeclared:I
+
+    const/4 p1, 0x4
+
+    if-eq p0, v3, :cond_24
+
+    const/4 v0, 0x2
+
+    if-eq p0, v2, :cond_23
+
+    if-eq p0, v0, :cond_23
+
+    if-ne p0, p1, :cond_1d
+
+    goto :goto_24
+
+    :cond_1d
+    new-instance p0, Ljava/security/InvalidParameterException;
+
+    invoke-direct {p0, v1}, Ljava/security/InvalidParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_23
+    return v0
+
+    :cond_24
+    :goto_24
+    return p1
+
+    :cond_25
+    new-instance p0, Ljava/security/InvalidParameterException;
+
+    const-string p1, "unknown key size"
+
+    invoke-direct {p0, p1}, Ljava/security/InvalidParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_2d
+    iget p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmDeclared:I
+
+    const/4 p1, 0x3
+
+    if-eq p0, v3, :cond_41
+
+    const/4 v0, 0x1
+
+    if-eq p0, v2, :cond_40
+
+    if-eq p0, v0, :cond_40
+
+    if-ne p0, p1, :cond_3a
+
+    goto :goto_41
+
+    :cond_3a
+    new-instance p0, Ljava/security/InvalidParameterException;
+
+    invoke-direct {p0, v1}, Ljava/security/InvalidParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_40
+    return v0
+
+    :cond_41
+    :goto_41
+    return p1
+.end method
+
+.method private static getNameFromParams(Ljava/security/spec/AlgorithmParameterSpec;)Ljava/lang/String;
+    .registers 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/InvalidAlgorithmParameterException;
+        }
+    .end annotation
+
+    .line 0
+    instance-of v0, p0, Ljava/security/spec/ECGenParameterSpec;
+
+    if-eqz v0, :cond_b
+
+    check-cast p0, Ljava/security/spec/ECGenParameterSpec;
+
+    invoke-virtual {p0}, Ljava/security/spec/ECGenParameterSpec;->getName()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_b
+    instance-of v0, p0, Lorg/bouncycastle/jce/spec/ECNamedCurveGenParameterSpec;
+
+    if-eqz v0, :cond_16
+
+    check-cast p0, Lorg/bouncycastle/jce/spec/ECNamedCurveGenParameterSpec;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jce/spec/ECNamedCurveGenParameterSpec;->getName()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_16
+    instance-of v0, p0, Lorg/bouncycastle/jcajce/spec/EdDSAParameterSpec;
+
+    if-eqz v0, :cond_21
+
+    check-cast p0, Lorg/bouncycastle/jcajce/spec/EdDSAParameterSpec;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jcajce/spec/EdDSAParameterSpec;->getCurveName()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_21
+    instance-of v0, p0, Lorg/bouncycastle/jcajce/spec/XDHParameterSpec;
+
+    if-eqz v0, :cond_2c
+
+    check-cast p0, Lorg/bouncycastle/jcajce/spec/XDHParameterSpec;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jcajce/spec/XDHParameterSpec;->getCurveName()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_2c
+    invoke-static {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/util/ECUtil;->getNameFrom(Ljava/security/spec/AlgorithmParameterSpec;)Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method private setupGenerator()Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+    .registers 3
+
+    .line 0
+    iget-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    if-nez v0, :cond_a
+
+    invoke-static {}, Lorg/bouncycastle/crypto/CryptoServicesRegistrar;->getSecureRandom()Ljava/security/SecureRandom;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    :cond_a
+    iget v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    const/4 v1, 0x1
+
+    if-eq v0, v1, :cond_50
+
+    const/4 v1, 0x2
+
+    if-eq v0, v1, :cond_40
+
+    const/4 v1, 0x3
+
+    if-eq v0, v1, :cond_30
+
+    const/4 v1, 0x4
+
+    if-ne v0, v1, :cond_28
+
+    new-instance v0, Lorg/bouncycastle/crypto/generators/X448KeyPairGenerator;
+
+    invoke-direct {v0}, Lorg/bouncycastle/crypto/generators/X448KeyPairGenerator;-><init>()V
+
+    new-instance v1, Lorg/bouncycastle/crypto/params/X448KeyGenerationParameters;
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    invoke-direct {v1, p0}, Lorg/bouncycastle/crypto/params/X448KeyGenerationParameters;-><init>(Ljava/security/SecureRandom;)V
+
+    invoke-virtual {v0, v1}, Lorg/bouncycastle/crypto/generators/X448KeyPairGenerator;->init(Lorg/bouncycastle/crypto/KeyGenerationParameters;)V
+
+    return-object v0
+
+    :cond_28
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    const-string v0, "generator not correctly initialized"
+
+    invoke-direct {p0, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_30
+    new-instance v0, Lorg/bouncycastle/crypto/generators/X25519KeyPairGenerator;
+
+    invoke-direct {v0}, Lorg/bouncycastle/crypto/generators/X25519KeyPairGenerator;-><init>()V
+
+    new-instance v1, Lorg/bouncycastle/crypto/params/X25519KeyGenerationParameters;
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    invoke-direct {v1, p0}, Lorg/bouncycastle/crypto/params/X25519KeyGenerationParameters;-><init>(Ljava/security/SecureRandom;)V
+
+    invoke-virtual {v0, v1}, Lorg/bouncycastle/crypto/generators/X25519KeyPairGenerator;->init(Lorg/bouncycastle/crypto/KeyGenerationParameters;)V
+
+    return-object v0
+
+    :cond_40
+    new-instance v0, Lorg/bouncycastle/crypto/generators/Ed448KeyPairGenerator;
+
+    invoke-direct {v0}, Lorg/bouncycastle/crypto/generators/Ed448KeyPairGenerator;-><init>()V
+
+    new-instance v1, Lorg/bouncycastle/crypto/params/Ed448KeyGenerationParameters;
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    invoke-direct {v1, p0}, Lorg/bouncycastle/crypto/params/Ed448KeyGenerationParameters;-><init>(Ljava/security/SecureRandom;)V
+
+    invoke-virtual {v0, v1}, Lorg/bouncycastle/crypto/generators/Ed448KeyPairGenerator;->init(Lorg/bouncycastle/crypto/KeyGenerationParameters;)V
+
+    return-object v0
+
+    :cond_50
+    new-instance v0, Lorg/bouncycastle/crypto/generators/Ed25519KeyPairGenerator;
+
+    invoke-direct {v0}, Lorg/bouncycastle/crypto/generators/Ed25519KeyPairGenerator;-><init>()V
+
+    new-instance v1, Lorg/bouncycastle/crypto/params/Ed25519KeyGenerationParameters;
+
+    iget-object p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    invoke-direct {v1, p0}, Lorg/bouncycastle/crypto/params/Ed25519KeyGenerationParameters;-><init>(Ljava/security/SecureRandom;)V
+
+    invoke-virtual {v0, v1}, Lorg/bouncycastle/crypto/generators/Ed25519KeyPairGenerator;->init(Lorg/bouncycastle/crypto/KeyGenerationParameters;)V
+
+    return-object v0
+.end method
+
+
+# virtual methods
+.method public generateKeyPair()Ljava/security/KeyPair;
+    .registers 4
+
+    .line 0
+    iget v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    const-string v1, "generator not correctly initialized"
+
+    if-eqz v0, :cond_5b
+
+    iget-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    if-nez v0, :cond_10
+
+    invoke-direct {p0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->setupGenerator()Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    :cond_10
+    iget-object v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    invoke-interface {v0}, Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;->generateKeyPair()Lorg/bouncycastle/crypto/AsymmetricCipherKeyPair;
+
+    move-result-object v0
+
+    iget p0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    const/4 v2, 0x1
+
+    if-eq p0, v2, :cond_43
+
+    const/4 v2, 0x2
+
+    if-eq p0, v2, :cond_43
+
+    const/4 v2, 0x3
+
+    if-eq p0, v2, :cond_2b
+
+    const/4 v2, 0x4
+
+    if-ne p0, v2, :cond_25
+
+    goto :goto_2b
+
+    :cond_25
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {p0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_2b
+    :goto_2b
+    new-instance p0, Ljava/security/KeyPair;
+
+    new-instance v1, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCXDHPublicKey;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/AsymmetricCipherKeyPair;->getPublic()Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCXDHPublicKey;-><init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+
+    new-instance v2, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCXDHPrivateKey;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/AsymmetricCipherKeyPair;->getPrivate()Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    move-result-object v0
+
+    invoke-direct {v2, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCXDHPrivateKey;-><init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+
+    invoke-direct {p0, v1, v2}, Ljava/security/KeyPair;-><init>(Ljava/security/PublicKey;Ljava/security/PrivateKey;)V
+
+    return-object p0
+
+    :cond_43
+    new-instance p0, Ljava/security/KeyPair;
+
+    new-instance v1, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPublicKey;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/AsymmetricCipherKeyPair;->getPublic()Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPublicKey;-><init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+
+    new-instance v2, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/crypto/AsymmetricCipherKeyPair;->getPrivate()Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;
+
+    move-result-object v0
+
+    invoke-direct {v2, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/BCEdDSAPrivateKey;-><init>(Lorg/bouncycastle/crypto/params/AsymmetricKeyParameter;)V
+
+    invoke-direct {p0, v1, v2}, Ljava/security/KeyPair;-><init>(Ljava/security/PublicKey;Ljava/security/PrivateKey;)V
+
+    return-object p0
+
+    :cond_5b
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    invoke-direct {p0, v1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public initialize(ILjava/security/SecureRandom;)V
+    .registers 3
+
+    .line 0
+    invoke-direct {p0, p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->getAlgorithmForStrength(I)I
+
+    move-result p1
+
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    iput-object p2, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    const/4 p1, 0x0
+
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    return-void
+.end method
+
+.method public initialize(Ljava/security/spec/AlgorithmParameterSpec;Ljava/security/SecureRandom;)V
+    .registers 5
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/InvalidAlgorithmParameterException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-static {p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->getNameFromParams(Ljava/security/spec/AlgorithmParameterSpec;)Ljava/lang/String;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_25
+
+    invoke-static {v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->getAlgorithmForName(Ljava/lang/String;)I
+
+    move-result p1
+
+    iget v0, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmDeclared:I
+
+    if-eq v0, p1, :cond_1d
+
+    invoke-static {p1}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->getAlgorithmFamily(I)I
+
+    move-result v1
+
+    if-ne v0, v1, :cond_15
+
+    goto :goto_1d
+
+    :cond_15
+    new-instance p0, Ljava/security/InvalidAlgorithmParameterException;
+
+    const-string p1, "parameterSpec for wrong curve type"
+
+    invoke-direct {p0, p1}, Ljava/security/InvalidAlgorithmParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+
+    :cond_1d
+    :goto_1d
+    iput p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->algorithmInitialized:I
+
+    iput-object p2, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->secureRandom:Ljava/security/SecureRandom;
+
+    const/4 p1, 0x0
+
+    iput-object p1, p0, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;->generator:Lorg/bouncycastle/crypto/AsymmetricCipherKeyPairGenerator;
+
+    return-void
+
+    :cond_25
+    new-instance p0, Ljava/security/InvalidAlgorithmParameterException;
+
+    new-instance p2, Ljava/lang/StringBuilder;
+
+    invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v0, "invalid parameterSpec: "
+
+    invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Ljava/security/InvalidAlgorithmParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.Ed25519 (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed25519)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed25519;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "Ed25519"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x1
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.Ed448 (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed448)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed448;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "Ed448"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x2
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.EdDSA (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$EdDSA)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$EdDSA;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "EdDSA"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, -0x1
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.X25519 (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X25519)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X25519;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "X25519"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x3
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.X448 (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X448)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X448;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "X448"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, 0x4
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method
+
+###### Class org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi.XDH (org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$XDH)
+.class public final Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$XDH;
+.super Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "XDH"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 2
+
+    .line 0
+    const/4 v0, -0x2
+
+    invoke-direct {p0, v0}, Lorg/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi;-><init>(I)V
+
+    return-void
+.end method

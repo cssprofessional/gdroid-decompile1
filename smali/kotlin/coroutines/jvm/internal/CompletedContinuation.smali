@@ -1,0 +1,83 @@
+###### Class kotlin.coroutines.jvm.internal.CompletedContinuation (kotlin.coroutines.jvm.internal.CompletedContinuation)
+.class public final Lkotlin/coroutines/jvm/internal/CompletedContinuation;
+.super Ljava/lang/Object;
+.source "ContinuationImpl.kt"
+
+# interfaces
+.implements Lkotlin/coroutines/Continuation;
+
+
+# annotations
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ljava/lang/Object;",
+        "Lkotlin/coroutines/Continuation<",
+        "Ljava/lang/Object;",
+        ">;"
+    }
+.end annotation
+
+
+# static fields
+.field public static final INSTANCE:Lkotlin/coroutines/jvm/internal/CompletedContinuation;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 0
+    new-instance v0, Lkotlin/coroutines/jvm/internal/CompletedContinuation;
+
+    invoke-direct {v0}, Lkotlin/coroutines/jvm/internal/CompletedContinuation;-><init>()V
+
+    sput-object v0, Lkotlin/coroutines/jvm/internal/CompletedContinuation;->INSTANCE:Lkotlin/coroutines/jvm/internal/CompletedContinuation;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .registers 1
+
+    .line 125
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public getContext()Lkotlin/coroutines/CoroutineContext;
+    .registers 2
+
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    .line 127
+    const-string v0, "This continuation is already complete"
+
+    invoke-direct {p0, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public resumeWith(Ljava/lang/Object;)V
+    .registers 2
+
+    new-instance p0, Ljava/lang/IllegalStateException;
+
+    .line 130
+    const-string p1, "This continuation is already complete"
+
+    invoke-direct {p0, p1}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+.method public toString()Ljava/lang/String;
+    .registers 1
+
+    .line 133
+    const-string p0, "This continuation is already complete"
+
+    return-object p0
+.end method

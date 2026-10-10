@@ -1,0 +1,4 @@
+###### Class org.slf4j.event.LoggingEvent (org.slf4j.event.LoggingEvent)
+.class public interface abstract Lorg/slf4j/event/LoggingEvent;
+.super Ljava/lang/Object;
+.source "LoggingEvent.java"

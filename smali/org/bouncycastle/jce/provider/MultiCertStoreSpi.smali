@@ -1,0 +1,204 @@
+###### Class org.bouncycastle.jce.provider.MultiCertStoreSpi (org.bouncycastle.jce.provider.MultiCertStoreSpi)
+.class public Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;
+.super Ljava/security/cert/CertStoreSpi;
+
+
+# instance fields
+.field private params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+
+# direct methods
+.method public constructor <init>(Ljava/security/cert/CertStoreParameters;)V
+    .registers 4
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/InvalidAlgorithmParameterException;
+        }
+    .end annotation
+
+    .line 0
+    invoke-direct {p0, p1}, Ljava/security/cert/CertStoreSpi;-><init>(Ljava/security/cert/CertStoreParameters;)V
+
+    instance-of v0, p1, Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    if-eqz v0, :cond_c
+
+    check-cast p1, Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    iput-object p1, p0, Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;->params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    return-void
+
+    :cond_c
+    new-instance p0, Ljava/security/InvalidAlgorithmParameterException;
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "org.bouncycastle.jce.provider.MultiCertStoreSpi: parameter must be a MultiCertStoreParameters object\n"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Ljava/security/InvalidAlgorithmParameterException;-><init>(Ljava/lang/String;)V
+
+    throw p0
+.end method
+
+
+# virtual methods
+.method public engineGetCRLs(Ljava/security/cert/CRLSelector;)Ljava/util/Collection;
+    .registers 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/cert/CertStoreException;
+        }
+    .end annotation
+
+    .line 0
+    iget-object v0, p0, Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;->params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/jce/MultiCertStoreParameters;->getSearchAllStores()Z
+
+    move-result v0
+
+    iget-object p0, p0, Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;->params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jce/MultiCertStoreParameters;->getCertStores()Ljava/util/Collection;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object p0
+
+    if-eqz v0, :cond_18
+
+    new-instance v1, Ljava/util/ArrayList;
+
+    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+
+    goto :goto_1a
+
+    :cond_18
+    sget-object v1, Ljava/util/Collections;->EMPTY_LIST:Ljava/util/List;
+
+    :cond_1a
+    :goto_1a
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_37
+
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/security/cert/CertStore;
+
+    invoke-virtual {v2, p1}, Ljava/security/cert/CertStore;->getCRLs(Ljava/security/cert/CRLSelector;)Ljava/util/Collection;
+
+    move-result-object v2
+
+    if-eqz v0, :cond_30
+
+    invoke-interface {v1, v2}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+
+    goto :goto_1a
+
+    :cond_30
+    invoke-interface {v2}, Ljava/util/Collection;->isEmpty()Z
+
+    move-result v3
+
+    if-nez v3, :cond_1a
+
+    return-object v2
+
+    :cond_37
+    return-object v1
+.end method
+
+.method public engineGetCertificates(Ljava/security/cert/CertSelector;)Ljava/util/Collection;
+    .registers 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/security/cert/CertStoreException;
+        }
+    .end annotation
+
+    .line 0
+    iget-object v0, p0, Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;->params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    invoke-virtual {v0}, Lorg/bouncycastle/jce/MultiCertStoreParameters;->getSearchAllStores()Z
+
+    move-result v0
+
+    iget-object p0, p0, Lorg/bouncycastle/jce/provider/MultiCertStoreSpi;->params:Lorg/bouncycastle/jce/MultiCertStoreParameters;
+
+    invoke-virtual {p0}, Lorg/bouncycastle/jce/MultiCertStoreParameters;->getCertStores()Ljava/util/Collection;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object p0
+
+    if-eqz v0, :cond_18
+
+    new-instance v1, Ljava/util/ArrayList;
+
+    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+
+    goto :goto_1a
+
+    :cond_18
+    sget-object v1, Ljava/util/Collections;->EMPTY_LIST:Ljava/util/List;
+
+    :cond_1a
+    :goto_1a
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_37
+
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/security/cert/CertStore;
+
+    invoke-virtual {v2, p1}, Ljava/security/cert/CertStore;->getCertificates(Ljava/security/cert/CertSelector;)Ljava/util/Collection;
+
+    move-result-object v2
+
+    if-eqz v0, :cond_30
+
+    invoke-interface {v1, v2}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+
+    goto :goto_1a
+
+    :cond_30
+    invoke-interface {v2}, Ljava/util/Collection;->isEmpty()Z
+
+    move-result v3
+
+    if-nez v3, :cond_1a
+
+    return-object v2
+
+    :cond_37
+    return-object v1
+.end method

@@ -1,0 +1,63 @@
+package kotlin.text;
+
+import java.util.Iterator;
+import kotlin.collections.AbstractCollection;
+import kotlin.collections.CollectionsKt__CollectionsKt;
+import kotlin.collections.CollectionsKt___CollectionsKt;
+import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.ranges.IntRange;
+import kotlin.sequences.SequencesKt___SequencesKt;
+
+/* JADX INFO: compiled from: Regex.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class MatcherMatchResult$groups$1 extends AbstractCollection<MatchGroup> implements MatchGroupCollection {
+    public final /* synthetic */ MatcherMatchResult this$0;
+
+    @Override // kotlin.collections.AbstractCollection, java.util.Collection
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public MatcherMatchResult$groups$1(MatcherMatchResult matcherMatchResult) {
+        this.this$0 = matcherMatchResult;
+    }
+
+    @Override // kotlin.collections.AbstractCollection, java.util.Collection
+    public final /* bridge */ boolean contains(Object obj) {
+        if (obj == null ? true : obj instanceof MatchGroup) {
+            return contains((MatchGroup) obj);
+        }
+        return false;
+    }
+
+    public /* bridge */ boolean contains(MatchGroup matchGroup) {
+        return super.contains((Object) matchGroup);
+    }
+
+    @Override // kotlin.collections.AbstractCollection
+    public int getSize() {
+        return this.this$0.getMatchResult().groupCount() + 1;
+    }
+
+    @Override // java.util.Collection, java.lang.Iterable
+    public Iterator<MatchGroup> iterator() {
+        return SequencesKt___SequencesKt.map(CollectionsKt___CollectionsKt.asSequence(CollectionsKt__CollectionsKt.getIndices(this)), new Function1() { // from class: kotlin.text.MatcherMatchResult$groups$1$$ExternalSyntheticLambda0
+            @Override // kotlin.jvm.functions.Function1
+            public final Object invoke(Object obj) {
+                return this.f$0.get(((Integer) obj).intValue());
+            }
+        }).iterator();
+    }
+
+    @Override // kotlin.text.MatchGroupCollection
+    public MatchGroup get(int i) {
+        IntRange intRangeRange = RegexKt.range(this.this$0.getMatchResult(), i);
+        if (intRangeRange.getStart().intValue() < 0) {
+            return null;
+        }
+        String strGroup = this.this$0.getMatchResult().group(i);
+        Intrinsics.checkNotNullExpressionValue(strGroup, "group(...)");
+        return new MatchGroup(strGroup, intRangeRange);
+    }
+}

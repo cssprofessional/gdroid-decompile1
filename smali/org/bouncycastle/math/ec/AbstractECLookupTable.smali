@@ -1,0 +1,30 @@
+###### Class org.bouncycastle.math.ec.AbstractECLookupTable (org.bouncycastle.math.ec.AbstractECLookupTable)
+.class public abstract Lorg/bouncycastle/math/ec/AbstractECLookupTable;
+.super Ljava/lang/Object;
+
+# interfaces
+.implements Lorg/bouncycastle/math/ec/ECLookupTable;
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 1
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public lookupVar(I)Lorg/bouncycastle/math/ec/ECPoint;
+    .registers 2
+
+    .line 0
+    invoke-interface {p0, p1}, Lorg/bouncycastle/math/ec/ECLookupTable;->lookup(I)Lorg/bouncycastle/math/ec/ECPoint;
+
+    move-result-object p0
+
+    return-object p0
+.end method

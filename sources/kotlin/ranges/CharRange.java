@@ -1,0 +1,52 @@
+package kotlin.ranges;
+
+import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
+
+/* JADX INFO: compiled from: PrimitiveRanges.kt */
+/* JADX INFO: loaded from: classes2.dex */
+public final class CharRange extends CharProgression {
+    public static final Companion Companion = new Companion(null);
+    public static final CharRange EMPTY = new CharRange(1, 0);
+
+    public CharRange(char c, char c2) {
+        super(c, c2, 1);
+    }
+
+    public boolean isEmpty() {
+        return Intrinsics.compare((int) getFirst(), (int) getLast()) > 0;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof CharRange) {
+            if (!isEmpty() || !((CharRange) obj).isEmpty()) {
+                CharRange charRange = (CharRange) obj;
+                if (getFirst() != charRange.getFirst() || getLast() != charRange.getLast()) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        if (isEmpty()) {
+            return -1;
+        }
+        return getLast() + (getFirst() * 31);
+    }
+
+    public String toString() {
+        return getFirst() + ".." + getLast();
+    }
+
+    /* JADX INFO: compiled from: PrimitiveRanges.kt */
+    public static final class Companion {
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        public Companion() {
+        }
+    }
+}

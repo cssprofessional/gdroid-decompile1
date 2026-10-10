@@ -1,0 +1,11 @@
+###### Class org.bouncycastle.crypto.EncapsulatedSecretExtractor (org.bouncycastle.crypto.EncapsulatedSecretExtractor)
+.class public interface abstract Lorg/bouncycastle/crypto/EncapsulatedSecretExtractor;
+.super Ljava/lang/Object;
+
+
+# virtual methods
+.method public abstract extractSecret([B)[B
+.end method
+
+.method public abstract getEncapsulationLength()I
+.end method

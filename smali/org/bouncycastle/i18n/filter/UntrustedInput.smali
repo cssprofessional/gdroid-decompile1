@@ -1,0 +1,57 @@
+###### Class org.bouncycastle.i18n.filter.UntrustedInput (org.bouncycastle.i18n.filter.UntrustedInput)
+.class public Lorg/bouncycastle/i18n/filter/UntrustedInput;
+.super Ljava/lang/Object;
+
+
+# instance fields
+.field protected input:Ljava/lang/Object;
+
+
+# direct methods
+.method public constructor <init>(Ljava/lang/Object;)V
+    .registers 2
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lorg/bouncycastle/i18n/filter/UntrustedInput;->input:Ljava/lang/Object;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public getInput()Ljava/lang/Object;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/i18n/filter/UntrustedInput;->input:Ljava/lang/Object;
+
+    return-object p0
+.end method
+
+.method public getString()Ljava/lang/String;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/i18n/filter/UntrustedInput;->input:Ljava/lang/Object;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public toString()Ljava/lang/String;
+    .registers 1
+
+    .line 0
+    iget-object p0, p0, Lorg/bouncycastle/i18n/filter/UntrustedInput;->input:Ljava/lang/Object;
+
+    invoke-virtual {p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    return-object p0
+.end method
